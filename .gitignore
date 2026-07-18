@@ -1,0 +1,28 @@
+# Archivos temporales y de compilación de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.blg
+*.bbl
+*.nav
+*.snm
+*.vrb
+*.ilg
+*.ind
+*.lof
+*.lot
+*.run.xml
+*-blx.bib
+
+# Nota: Omitimos el PDF de salida para que cada integrante lo compile localmente,
+# pero si deseas versionarlo, puedes comentar la siguiente línea.
+*.pdf
+
+# Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db
+Desktop.ini

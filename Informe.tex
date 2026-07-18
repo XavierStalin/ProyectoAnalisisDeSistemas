@@ -1,0 +1,768 @@
+\documentclass[11pt,a4paper]{article}
+
+% ==========================================
+% 1. CONFIGURACIÓN DEL DOCUMENTO
+% ==========================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+
+% Márgenes de 2.5 cm en todos los lados
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=25mm,
+    right=25mm,
+    top=25mm,
+    bottom=25mm,
+    headheight=24pt % Ajuste para fancyhdr
+}
+
+% ==========================================
+% 2. IDENTIDAD VISUAL Y COLORES
+% ==========================================
+\usepackage[table,dvipsnames]{xcolor}
+\definecolor{upsblue}{HTML}{002F6C}    % Azul Marino Institucional
+\definecolor{upsyellow}{HTML}{FFC72C}  % Amarillo Ocre Institucional
+\definecolor{lightgray}{gray}{0.95}
+
+% Configuración de hyperref discreta
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=upsblue,
+    urlcolor=upsblue,
+    citecolor=upsblue
+}
+
+% ==========================================
+% 3. ENCABEZADOS Y PIES DE PÁGINA
+% ==========================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Limpiar valores por defecto
+\fancyhead[L]{\textcolor{upsblue}{\small\textbf{Universidad Politécnica Salesiana}}}
+\fancyhead[R]{\textcolor{upsblue}{\small Informe de Implementación - Análisis y Diseño de Sistemas}}
+\fancyfoot[R]{\small Página \thepage}
+
+% Línea horizontal en encabezado color azul institucional
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{upsblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% ==========================================
+% PAQUETES ADICIONALES Y AUXILIARES
+% ==========================================
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{enumitem}
+\usepackage{parskip} % Separación entre párrafos sin sangría
+\usepackage{amssymb}
+\usepackage{float}
+
+% Estilo de columnas para tablas con ajuste automático
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+% Comando auxiliar para placeholders de imágenes sin exceder los márgenes
+\newcommand{\placeholderfig}[2][5cm]{%
+    \begin{center}
+        \fbox{\parbox[c][#1][c]{0.9\linewidth}{\centering\itshape\textcolor{gray}{#2}}}
+    \end{center}
+}
+
+\begin{document}
+
+% ==========================================
+% 4. PORTADA FORMAL (INFORME TÉCNICO)
+% ==========================================
+\begin{titlepage}
+    \centering
+    \vspace*{0.5cm}
+    
+    % Logo Institucional Real de la carpeta imagenes
+    \includegraphics[width=0.45\textwidth]{imagenes/LogoUps.png}
+    \vspace{0.8cm}
+    
+    {\fontsize{16}{20}\selectfont\textbf{UNIVERSIDAD POLITÉCNICA SALESIANA}}\\[0.4cm]
+    {\large\textbf{Área de Conocimiento: Ciencia y Tecnología}}\\[0.2cm]
+    {\large\textbf{Carrera de Ingeniería en Ciencias de la Computación}}\\[1.2cm]
+    
+    \textcolor{upsblue}{\rule{\linewidth}{2pt}}\\[0.5cm]
+    {\fontsize{18}{22}\selectfont\textbf{INFORME DE IMPLEMENTACIÓN DE SISTEMA}}\\[0.4cm]
+    {\large\textbf{Caso de Estudio: Tienda de Venta de Comida de Mascotas}}\\[0.2cm]
+    {\normalsize\textit{``PetShop Huellitas \& Snacks''}}\\[0.4cm]
+    \textcolor{upsblue}{\rule{\linewidth}{2pt}}\\[1.5cm]
+    
+    \vfill
+    
+    % Bloque de datos del estudiante/autor (Tres Integrantes)
+    \begin{flushright}
+        \begin{minipage}{0.65\textwidth}
+            \small
+            \renewcommand{\arraystretch}{1.2}
+            \begin{tabular}{r l}
+                \textbf{Integrantes:} & 1. Xavier Sig \\
+                                      & 2. [Nombre Estudiante 2] \\
+                                      & 3. [Nombre Estudiante 3] \\[0.15cm]
+                \textbf{Docente:}     & [Nombre del Docente] \\
+                \textbf{Asignatura:}  & Análisis y Diseño de Sistemas \\
+                \textbf{Fecha:}       & \today
+            \end{tabular}
+        \end{minipage}
+    \end{flushright}
+    
+    \vspace{1cm}
+\end{titlepage}
+
+\newpage
+
+% Índice general
+\tableofcontents
+\newpage
+
+% ==========================================
+% SECCIÓN 1: INTRODUCCIÓN Y OBJETIVOS
+% ==========================================
+\section{Introducción y Objetivos}
+
+\subsection{Introducción}
+%% TODO: Redacte una introducción sobre el proyecto de desarrollo para la tienda de comida de mascotas.
+\textit{[Redacte aquí la introducción. Ej. En la actualidad, el sector minorista de venta de alimento para mascotas ha experimentado un crecimiento acelerado debido al incremento de mascotas en los hogares. Sin embargo, muchos negocios pequeños y medianos como "PetShop Huellitas \& Snacks" carecen de herramientas de software automatizadas que integren de forma eficiente las ventas online con la gestión de stock y almacén. Este informe detalla el proceso de análisis, diseño y la propuesta de implementación de un sistema de software enfocado a solucionar estas debilidades operativas, garantizando escalabilidad y robustez a través de servicios en la nube.]}
+
+\subsection{Objetivos del Proyecto}
+
+\subsubsection{Objetivo General}
+%% TODO: Definir el objetivo principal del sistema para la tienda de mascotas.
+\textit{[Establezca el objetivo general. Ej. Diseñar e implementar un sistema informático de control de stock y ventas en línea para la tienda de comida de mascotas "PetShop Huellitas \& Snacks", con el fin de optimizar el procesamiento de pedidos, automatizar el reabastecimiento y mejorar la experiencia de usuario mediante una plataforma web multiusuario segura y de alta disponibilidad.]}
+
+\subsubsection{Objetivos Específicos}
+%% TODO: Definir los objetivos específicos que guiarán el desarrollo.
+\begin{itemize}
+    \item \textbf{Contextualizar el entorno operativo:} Analizar las interacciones de la tienda con clientes, proveedores y sistemas regulatorios para construir un modelo contextual y DFD de nivel 0 sólidos.
+    \item \textbf{Modelar el comportamiento y arquitectura de la solución:} Diseñar los diagramas de interacción (secuencia y actividades) y estructurales (clases y despliegue distribuido) utilizando el estándar UML.
+    \item \textbf{Garantizar alineación estratégica:} Diseñar los módulos del sistema alineados directamente con la estrategia estratégica definida tras el cruce de factores de la matriz FODA del negocio.
+\end{itemize}
+
+% ==========================================
+% SECCIÓN 2: DATOS GENERALES Y GESTIÓN ESTRATÉGICA
+% ==========================================
+\section{Datos Generales y gestión estratégica}
+
+\subsection{Nombre de la empresa. Dirección}
+%% TODO: Colocar el nombre comercial de la empresa real y su dirección física
+\textbf{Nombre Comercial:} \textit{[Ej. Distribuidora de Alimentos Huellitas S.A. / PetShop Huellitas]} \\
+\textbf{Dirección Física:} \textit{[Ej. Av. de los Granados y Av. 6 de Diciembre, Edificio Mascotas, Planta Baja, Quito, Ecuador]}
+
+\subsection{Descripción de las actividades}
+%% TODO: Describir brevemente el giro de negocio, sector y las actividades principales
+\textit{[Describa aquí el giro del negocio. Ej. La empresa se dedica a la comercialización minorista y mayorista de comida balanceada, snacks y suplementos nutricionales para perros, gatos y otras mascotas domésticas. Cuenta con atención en local físico y canal de entregas a domicilio (delivery). Su principal sector es el retail especializado de mascotas.]}
+
+\subsection{Foto de la empresa}
+%% TODO: Insertar una foto real de la fachada del establecimiento
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Foto de la fachada del establecimiento de comida de mascotas}
+    \caption{Fachada del establecimiento de la Tienda de Comida de Mascotas}
+    \label{fig:foto_empresa}
+\end{figure}
+
+\subsection{Análisis FODA}
+%% TODO: Colocar obligatoriamente 2 fortalezas, 2 debilidades, 2 oportunidades y 2 amenazas específicas
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|X|}
+        \hline
+        \rowcolor{upsblue} \multicolumn{2}{|c|}{\textcolor{white}{\textbf{MATRIZ FODA}}} \\
+        \hline
+        \rowcolor{lightgray} \textbf{Fortalezas (F)} & \textbf{Debilidades (D)} \\
+        \hline
+        1. \textit{[Ej. Amplia variedad en marcas premium de alimentos (Royal Canin, Hills).]} & 
+        1. \textit{[Ej. Procesamiento manual e ineficiente de pedidos vía canales telefónicos.]} \\
+        2. \textit{[Ej. Entrega a domicilio propia con personal especializado.]} & 
+        2. \textit{[Ej. Inventario físico desvinculado del stock lógico de la tienda online.]} \\
+        \hline
+        \rowcolor{lightgray} \textbf{Oportunidades (O)} & \textbf{Amenazas (A)} \\
+        \hline
+        1. \textit{[Ej. Creciente número de hogares con mascotas y demanda de servicio online.]} & 
+        1. \textit{[Ej. Competencia directa de supermercados que ofrecen marcas genéricas de bajo costo.]} \\
+        2. \textit{[Ej. Disposición del usuario a suscribirse a entregas mensuales programadas.]} & 
+        2. \textit{[Ej. Problemas logísticos del importador que retrasen el abastecimiento de stock.]} \\
+        \hline
+    \end{tabularx}
+    \caption{Análisis FODA - Tienda de Alimentos de Mascotas}
+    \label{tab:foda}
+\end{table}
+
+\subsection{Estrategia MIN-MIN / MAX-MAX}\label{sec:estrategia}
+%% TODO: Definir el cruce de factores del FODA para justificar el software
+\textbf{Estrategia Ofensiva (MAX-MAX):} \\
+\textit{[Cruzar F1/F2 con O2: Desarrollo de un portal e-commerce interactivo con suscripciones de alimento automático para mascotas con entregas mensuales programadas y entrega express propia.]}
+
+\textbf{Estrategia de Supervivencia (MIN-MIN):} \\
+\textit{[Cruzar D1/D2 con A1: Automatizar y unificar el control de stock e inventario con la pasarela de ventas para reducir tiempos de despacho, optimizar inventario y competir ágilmente con las grandes cadenas comerciales.]}
+
+% ==========================================
+% SECCIÓN 3: INFORMACIÓN DEL ENTORNO
+% ==========================================
+\section{Información del entorno}
+
+\subsection{Descripción del entorno}
+%% TODO: Describir con quién interactúa el negocio
+\begin{itemize}
+    \item \textbf{Proveedores:} \textit{[Ej. Importadores directos de marcas premium, fábricas locales de empaque y snacks.]}
+    \item \textbf{Clientes:} \textit{[Ej. Dueños de mascotas en zonas urbanas, albergues de rescate, veterinarias minoristas.]}
+    \item \textbf{Competencia:} \textit{[Ej. Cadenas de supermercados locales, veterinarias del sector, otras tiendas online de mascotas.]}
+    \item \textbf{Estado:} \textit{[Ej. SRI (regulación tributaria y facturación electrónica), Agencia de Regulación y Control Sanitario.]}
+    \item \textbf{Comunidad:} \textit{[Ej. Asociaciones protectoras de animales, residentes del sector que demandan productos bio-degradables.]}
+\end{itemize}
+
+\subsection{Entidades}
+%% TODO: Listar los actores externos identificados que intercambian información con el sistema
+\begin{enumerate}
+    \item \textbf{Cliente:} Consulta catálogo, realiza compras, gestiona pedidos y efectúa pagos.
+    \item \textbf{Administrador/Vendedor:} Configura catálogo de productos, aprueba órdenes de reabastecimiento y despacha pedidos.
+    \item \textbf{Proveedor:} Recibe y procesa órdenes de reabastecimiento automáticas cuando desciende el stock.
+    \item \textbf{Pasarela de Pago (Externa):} Procesa y valida las transacciones bancarias o con tarjeta de crédito.
+    \item \textbf{Sistema de Facturación SRI (Externo):} Valida y emite facturas electrónicas válidas.
+\end{enumerate}
+
+\subsection{Modelo de Contexto}
+%% TODO: Insertar el diagrama de contexto
+\begin{figure}[H]
+    \centering
+    \placeholderfig[6cm]{Diagrama de Contexto del Sistema de Tienda de Mascotas}
+    \caption{Diagrama de Modelo de Contexto}
+    \label{fig:modelo_contexto}
+\end{figure}
+
+\subsection{Diagrama de Flujo de Datos Nivel 0}
+%% TODO: Insertar el diagrama DFD Nivel 0 (mínimo 3 procesos)
+\begin{figure}[H]
+    \centering
+    \placeholderfig[6.5cm]{Diagrama de Flujo de Datos (DFD) Nivel 0 (Mínimo 3 procesos con almacenes e interacciones)}
+    \caption{Diagrama de Flujo de Datos (DFD) Nivel 0}
+    \label{fig:dfd_nivel_0}
+\end{figure}
+
+\newpage
+% ==========================================
+% SECCIÓN 4: REQUERIMIENTOS DEL SISTEMA
+% ==========================================
+\section{Requerimientos del Sistema}
+
+\subsection{Definición del sistema informático basado en la estrategia estratégica definida en el punto \ref{sec:estrategia}}
+%% TODO: Definición basada en la estrategia estratégica MAX-MAX o MIN-MIN descrita en la sección 2.5
+\textit{[Proponga conceptualmente el sistema. Ej. Se propone "PetFood-Manager", un sistema web multiusuario enfocado a la suscripción de entrega recurrente de alimento para mascotas, integrado con control en tiempo real de inventarios en almacén físico para optimizar los procesos de la tienda.]}
+
+\subsection{Listado de requerimientos funcionales}
+%% TODO: Colocar mínimo 3 requerimientos funcionales en tabla tabularx
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|p{4.5cm}|L|}
+        \hline
+        \rowcolor{upsblue} \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Requerimiento Funcional}} & \textcolor{white}{\textbf{Descripción / Detalle}} \\
+        \hline
+        \textbf{RF-01} & Registro de Catálogo de Alimentos & El sistema permitirá al Administrador registrar nuevos alimentos detallando marca, tipo de mascota, peso neto (kg), stock disponible, stock mínimo y costo. \\
+        \hline
+        \textbf{RF-02} & Carrito de Compras y Pagos & El sistema permitirá a los clientes seleccionar productos, configurar suscripciones de entrega periódica y pagar vía pasarela de pagos integrada. \\
+        \hline
+        \textbf{RF-03} & Alertas y Órdenes Automáticas & El sistema enviará una notificación visual y un correo electrónico al Proveedor con una orden de compra cuando el stock esté por debajo del límite mínimo. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabla de Requerimientos Funcionales}
+    \label{tab:requerimientos_funcionales}
+\end{table}
+
+\subsection{Listado de requerimientos no funcionales}
+%% TODO: Colocar mínimo 3 requerimientos no funcionales (rendimiento, seguridad, robustez, etc.)
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|p{4.5cm}|L|}
+        \hline
+        \rowcolor{upsblue} \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Requerimiento No Funcional}} & \textcolor{white}{\textbf{Descripción / Criterio de Medición}} \\
+        \hline
+        \textbf{RNF-01} & Tiempo de Respuesta & El sistema debe mostrar el stock actualizado de los alimentos en el catálogo en menos de 1.5 segundos ante consultas concurrentes. \\
+        \hline
+        \textbf{RNF-02} & Seguridad de Información & Toda la información transmitida durante la confirmación de pago debe viajar encriptada mediante protocolo SSL/TLS con HTTPS activo. \\
+        \hline
+        \textbf{RNF-03} & Alta Disponibilidad & Los servicios backend del portal deben operar con una disponibilidad mínima de 99.9\% alojados sobre infraestructura cloud de Azure. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabla de Requerimientos No Funcionales}
+    \label{tab:requerimientos_no_funcionales}
+\end{table}
+
+\newpage
+% ==========================================
+% SECCIÓN 5: CASOS DE USO
+% ==========================================
+\section{Casos de uso}
+
+\subsection{Diagramas de casos de uso}
+%% TODO: Elaborar 1 diagrama de caso de uso general y mínimo 3 específicos
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Diagrama de Caso de Uso General (Asociación, include, extend, actores)}
+    \caption{Diagrama de Casos de Uso General}
+    \label{fig:cu_general}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5cm]{Diagrama de Caso de Uso Específico 1 (Procesar Venta de Alimentos)}
+    \caption{Diagrama de Caso de Uso Específico 1}
+    \label{fig:cu_especifico_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5cm]{Diagrama de Caso de Uso Específico 2 (Administrar Catálogo de Inventario)}
+    \caption{Diagrama de Caso de Uso Específico 2}
+    \label{fig:cu_especifico_2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5cm]{Diagrama de Caso de Uso Específico 3 (Control de Alertas de Compra a Proveedor)}
+    \caption{Diagrama de Caso de Uso Específico 3}
+    \label{fig:cu_especifico_3}
+\end{figure}
+
+\newpage
+\subsection{Especificación de casos de uso}
+%% TODO: Completar la especificación de los 3 casos de uso específicos identificados, con las columnas e instructivos adaptados.
+
+% TABLA 1: CASO DE USO 1
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|>{\bfseries\raggedright\arraybackslash}p{4cm}|L|}
+        \hline
+        \rowcolor{upsblue} \multicolumn{2}{|c|}{\textcolor{white}{\textbf{Especificación de Caso de Uso 1}}} \\
+        \hline
+        Nombre del caso de uso & \textit{[Ej. Registrar Pedido de Comida de Mascotas]} \\
+        \hline
+        Descripción & \textit{[El cliente selecciona comida para su mascota de la tienda web y realiza la orden de compra.]} \\
+        \hline
+        Precondición & \textit{[El cliente debe estar logueado y el catálogo debe tener existencias (stock) del alimento deseado.]} \\
+        \hline
+        Actores & \textit{[Cliente (iniciador), Pasarela de Pago, Administrador de Tienda (receptor).]} \\
+        \hline
+        Secuencia normal & 
+        1. El cliente examina y selecciona la marca de comida y el tamaño de bolsa (kg). \par
+        2. El cliente añade los productos al carrito de compras y pulsa ``Proceder al Pago''. \par
+        3. El sistema solicita los datos de envío y dirige a la Pasarela de Pago. \par
+        4. El cliente ingresa su método de pago y autoriza la transacción. \par
+        5. El sistema valida la transacción, descuenta el stock y genera la orden de despacho. \\
+        \hline
+        Poscondición & \textit{[El stock se reduce en la base de datos, se envía correo de confirmación de pedido y comprobante electrónico al cliente.]} \\
+        \hline
+        Excepciones & 
+        4.a. Transacción rechazada por fondos insuficientes: El sistema indica el error y retorna al carrito de compras. \par
+        5.a. Fallo en la comunicación con el SRI para facturación: El sistema almacena la factura como offline y la reintenta luego. \\
+        \hline
+        Importancia & Alta \\
+        \hline
+    \end{tabularx}
+    \caption{Especificación de Caso de Uso 1: Registrar Pedido}
+    \label{tab:especificacion_cu1}
+\end{table}
+
+\newpage
+% TABLA 2: CASO DE USO 2
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|>{\bfseries\raggedright\arraybackslash}p{4cm}|L|}
+        \hline
+        \rowcolor{upsblue} \multicolumn{2}{|c|}{\textcolor{white}{\textbf{Especificación de Caso de Uso 2}}} \\
+        \hline
+        Nombre del caso de uso & \textit{[Ej. Actualizar Catálogo e Inventario de Alimentos]} \\
+        \hline
+        Descripción & \textit{[El administrador del negocio registra nuevas marcas, bolsas de comida o ajusta stock y precios del catálogo.]} \\
+        \hline
+        Precondición & \textit{[El usuario administrador debe haberse autenticado correctamente en el panel administrativo.]} \\
+        \hline
+        Actores & \textit{[Administrador de Tienda.]} \\
+        \hline
+        Secuencia normal & 
+        1. El administrador ingresa a ``Gestión de Inventario'' y presiona ``Agregar Producto''. \par
+        2. Completa el formulario con: nombre del alimento, marca, animal destinatario, peso, precio de venta, stock actual y stock mínimo. \par
+        3. El administrador sube la imagen del producto y pulsa ``Guardar''. \par
+        4. El sistema valida los datos y registra el producto en la base de datos. \\
+        \hline
+        Poscondición & \textit{[El catálogo público de la tienda se actualiza con el nuevo alimento y cantidad disponible.]} \\
+        \hline
+        Excepciones & 
+        2.a. El stock ingresado es un número negativo: El sistema bloquea el guardado y muestra mensaje de error. \par
+        3.a. Imagen supera el formato o peso máximo: El sistema pide subir una imagen optimizada. \\
+        \hline
+        Importancia & Alta \\
+        \hline
+    \end{tabularx}
+    \caption{Especificación de Caso de Uso 2: Actualizar Catálogo}
+    \label{tab:especificacion_cu2}
+\end{table}
+
+\newpage
+% TABLA 3: CASO DE USO 3
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|>{\bfseries\raggedright\arraybackslash}p{4cm}|L|}
+        \hline
+        \rowcolor{upsblue} \multicolumn{2}{|c|}{\textcolor{white}{\textbf{Especificación de Caso de Uso 3}}} \\
+        \hline
+        Nombre del caso de uso & \textit{[Ej. Emitir Orden de Reabastecimiento Automática]} \\
+        \hline
+        Descripción & \textit{[El sistema genera una alerta visual y un reporte de orden de compra para un proveedor cuando la comida balanceada baja de su stock mínimo.]} \\
+        \hline
+        Precondición & \textit{[El stock del artículo es inferior al stock crítico establecido en el inventario.]} \\
+        \hline
+        Actores & \textit{[Sistema (iniciador), Administrador de Tienda (aprobador), Proveedor de Alimentos (receptor).]} \\
+        \hline
+        Secuencia normal & 
+        1. Tras confirmarse una venta, el sistema detecta que el stock disponible es menor que el stock mínimo configurado. \par
+        2. El sistema genera automáticamente un borrador de Orden de Compra dirigida al proveedor asociado. \par
+        3. El sistema muestra una alerta en el dashboard del Administrador. \par
+        4. El administrador abre la alerta, revisa los kilos sugeridos de alimento a pedir y pulsa ``Aprobar Orden''. \par
+        5. El sistema despacha el correo electrónico formal con la orden de compra al sistema del Proveedor. \\
+        \hline
+        Poscondición & \textit{[El sistema registra el estado del lote en ``Pendiente de Arribo'' y el proveedor recibe el requerimiento.]} \\
+        \hline
+        Excepciones & 
+        2.a. No hay un proveedor asociado a esa marca de comida de mascotas: El sistema genera una alerta solicitando la asignación manual de un proveedor. \par
+        4.a. El administrador edita la cantidad antes de enviar: El sistema recalcula los valores de la orden. \\
+        \hline
+        Importancia & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Especificación de Caso de Uso 3: Alerta de Reabastecimiento}
+    \label{tab:especificacion_cu3}
+\end{table}
+
+\newpage
+% ==========================================
+% SECCIÓN 6: DIAGRAMAS DE INTERACCIÓN Y COMPORTAMIENTO
+% ==========================================
+\section{Diagramas de interacción y comportamiento}
+
+\subsection{Diagrama de secuencia}
+%% TODO: Elaborar mínimo 3 diagramas de secuencia (línea de vida, fin de clase, mensajes)
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Diagrama de Secuencia 1: Registrar Pedido (Actores, Clases, Mensajes de retorno)}
+    \caption{Diagrama de Secuencia - Registro de Pedido}
+    \label{fig:secuencia_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Diagrama de Secuencia 2: Actualización de Inventario (Administrador, Controladores, DB)}
+    \caption{Diagrama de Secuencia - Actualización de Catálogo}
+    \label{fig:secuencia_2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Diagrama de Secuencia 3: Alerta automática de Stock (Sistema, Mailer, Proveedor)}
+    \caption{Diagrama de Secuencia - Alerta de Reabastecimiento}
+    \label{fig:secuencia_3}
+\end{figure}
+
+\subsection{Diagrama de actividades}
+%% TODO: Elaborar mínimo 3 diagramas de actividades (decisiones, barras de sincronización fork/join)
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Diagrama de Actividades 1: Flujo de Pago y Carrito (Bifurcaciones, Sincronización)}
+    \caption{Diagrama de Actividades - Flujo de Compra y Pago}
+    \label{fig:actividades_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Diagrama de Actividades 2: Registro de Productos (Validación y Carga de Fotos)}
+    \caption{Diagrama de Actividades - Registro de Inventario}
+    \label{fig:actividades_2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Diagrama de Actividades 3: Alerta de Compra al Proveedor (Decisión de Aprobación)}
+    \caption{Diagrama de Actividades - Alerta de Reabastecimiento}
+    \label{fig:actividades_3}
+\end{figure}
+
+\newpage
+% ==========================================
+% SECCIÓN 7: DIAGRAMAS ESTRUCTURALES
+% ==========================================
+\section{Diagramas estructurales}
+
+\subsection{Diagrama de clases}
+%% TODO: Elaborar un diagrama de clases (singular, atributos y métodos, relaciones herencia, asociación y mín. 2 agregaciones/composiciones)
+\begin{figure}[H]
+    \centering
+    \placeholderfig[7cm]{Diagrama de Clases del Sistema (Sustantivos singulares, herencia, asociación y 2 composición/agregación)}
+    \caption{Diagrama de Clases - Sistema de Comida de Mascotas}
+    \label{fig:diagrama_clases}
+\end{figure}
+
+\subsection{Diagrama de despliegue}
+%% TODO: Elaborar el diagrama de despliegue en nube (Azure, dispositivos clientes, protocolos y nodos de hardware)
+\begin{figure}[H]
+    \centering
+    \placeholderfig[6.5cm]{Diagrama de Despliegue en Microsoft Azure (Nodos CPU/Memoria, base de datos en nube, conexiones)}
+    \caption{Diagrama de Despliegue de la Infraestructura Distribuida}
+    \label{fig:diagrama_despliegue}
+\end{figure}
+
+\newpage
+% ==========================================
+% SECCIÓN 8: SOLUCIÓN INFORMÁTICA
+% ==========================================
+\section{Solución informática}
+
+\subsection{Mapa de navegación}
+%% TODO: Insertar mapa de navegación del sistema web multiusuario
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Mapa de Navegación del Portal de Alimentos de Mascotas (Administrador, Cliente, Visitante)}
+    \caption{Mapa de Navegación de la Aplicación Web}
+    \label{fig:mapa_navegacion}
+\end{figure}
+
+\subsection{Wireframe borrador del diseño de pantallas}
+%% TODO: Bocetos de las pantallas principales (HOME con catálogo, Login, Menú) mostrando menú, banner y footer
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Wireframe Pantalla HOME (Catálogo de marcas de comida de mascotas, banner superior, footer)}
+    \caption{Wireframe - Pantalla HOME}
+    \label{fig:wf_home}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Wireframe Pantalla LOGIN (Campos usuario, contraseña, validación)}
+    \caption{Wireframe - Pantalla LOGIN}
+    \label{fig:wf_login}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \placeholderfig[5.5cm]{Wireframe Panel de Administración (Gestión de stocks, catálogo, reportes de alertas)}
+    \caption{Wireframe - Panel de Administración / Menú}
+    \label{fig:wf_menu}
+\end{figure}
+
+\newpage
+\subsection{Pantallas del proyecto terminado}
+%% TODO: Capturas de pantalla vinculadas a los casos de uso
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|p{5.5cm}|L|}
+        \hline
+        \rowcolor{upsblue} \textcolor{white}{\textbf{Nombre del caso de uso}} & \textcolor{white}{\textbf{Captura de Pantalla del sistema informático terminado}} \\
+        \hline
+        Registrar Pedido de Comida de Mascotas & 
+        \placeholderfig[3cm]{Captura del sistema real: Carrito de compras de alimento balanceado y pasarela de pago} \\
+        \hline
+        Actualizar Catálogo e Inventario de Alimentos & 
+        \placeholderfig[3cm]{Captura del sistema real: Panel administrador agregando marca de comida y configuración de stock mínimo} \\
+        \hline
+        Emitir Orden de Reabastecimiento Automática & 
+        \placeholderfig[3cm]{Captura del sistema real: Dashboard con alerta de nivel crítico y orden enviada al proveedor} \\
+        \hline
+    \end{tabularx}
+    \caption{Evidencia de Pantallas del Sistema Terminado}
+    \label{tab:pantallas_proyecto}
+\end{table}
+
+\subsection{Link del código fuente. Enlace de GITHUB}
+%% TODO: Enlace a repositorio con base de datos y descripción
+La base de datos, código fuente y documentación del proyecto de comida de mascotas se encuentran en el siguiente repositorio:
+\begin{center}
+    \textbf{Repositorio en GitHub:} \url{https://github.com/XavierSig/petfood-manager-system}
+\end{center}
+
+% ==========================================
+% SECCIÓN 9: CONCLUSIONES Y RECOMENDACIONES
+% ==========================================
+\section{Conclusiones y Recomendaciones}
+%% TODO: Colocar las 6 conclusiones obligatorias según la rúbrica (3 de aplicación práctica de la materia y 3 de retos técnicos)
+\begin{enumerate}
+    \item \textbf{Conclusión 1 (Aplicación práctica):} \\
+    \textit{[Conclusión detallada sobre cómo el modelado del Modelo Contextual y DFD de nivel 0 permitieron entender sin ambigüedades el flujo de la comida balanceada desde el proveedor hasta el cliente final, alineando los requisitos técnicos con la operación de venta de mascotas.]}
+    
+    \item \textbf{Conclusión 2 (Aplicación práctica):} \\
+    \textit{[Conclusión detallada sobre el impacto de alinear el sistema con la estrategia FODA del negocio de mascotas, posibilitando mitigar amenazas mediante la agilidad y control de stock.]}
+    
+    \item \textbf{Conclusión 3 (Aplicación práctica):} \\
+    \textit{[Conclusión detallada sobre el uso de la especificación de casos de uso para mapear exactamente las acciones y excepciones durante la venta, asegurando que el programador desarrolle las validaciones necesarias.]}
+    
+    \item \textbf{Conclusión 4 (Retos técnicos):} \\
+    \textit{[Conclusión detallada sobre el reto técnico que supuso diseñar un diagrama de clases estructurado con relaciones de composición y agregación para luego trasladarlo a una base de datos distribuida en Azure.]}
+    
+    \item \textbf{Conclusión 5 (Retos técnicos):} \\
+    \textit{[Conclusión detallada sobre la complejidad en la navegación web multiusuario y el control de accesos seguros mediante HTTPS/TLS.]}
+    
+    \item \textbf{Conclusión 6 (Retos técnicos):} \\
+    \textit{[Conclusión detallada sobre el reto de sincronizar en tiempo real el inventario físico con las ventas concurrentes y el envío automático de órdenes de compra al proveedor.]}
+\end{enumerate}
+
+\newpage
+% ==========================================
+% SECCIÓN 10: BIBLIOGRAFÍA
+% ==========================================
+\section{Bibliografía}
+%% TODO: Insertar material bibliográfico en formato APA
+\begin{thebibliography}{9}
+    \bibitem{sommerville}
+    Sommerville, I. (2011). \textit{Ingeniería de Software} (9na ed.). México: Pearson Educación.
+    
+    \bibitem{pressman}
+    Pressman, R. S. (2010). \textit{Ingeniería del software: un enfoque práctico} (7ma ed.). México: McGraw-Hill.
+    
+    \bibitem{larman}
+    Larman, C. (2003). \textit{UML y Patrones: Una introducción al análisis y diseño orientado a objetos y al proceso unificado} (2da ed.). Madrid: Prentice Hall.
+    
+    \bibitem{umbaugh}
+    Umbaugh, D. E. (Ed.). (2020). \textit{Handbook of Systems Analysis and Design}. CRC Press.
+\end{thebibliography}
+
+\newpage
+% ==========================================
+% SECCIÓN 11: ANEXO (RÚBRICA DE EVALUACIÓN)
+% ==========================================
+\section{Anexo: Rúbrica de Evaluación}
+\label{sec:rubrica}
+
+La siguiente tabla resume los criterios de evaluación y puntajes asignados para cada sección del presente informe:
+
+\begin{table}[H]
+    \centering
+    \scriptsize
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|L|L|L|L|c|}
+        \hline
+        \rowcolor{upsblue}
+        \textcolor{white}{\textbf{Criterio}} &
+        \textcolor{white}{\textbf{Nivel Bajo}} &
+        \textcolor{white}{\textbf{Nivel Medio}} &
+        \textcolor{white}{\textbf{Nivel Alto}} &
+        \textcolor{white}{\textbf{Pts.}} \\
+        \hline
+        Seleccionar una empresa real &
+        Información correcta $<40$\%. &
+        Información correcta 41--80\%. &
+        Descripción adecuada $>81$\%. Foto de la empresa. &
+        \textbf{2} \\
+        \hline
+        Identificar la gestión estratégica &
+        Información correcta $<40$\%. &
+        Información correcta 41--80\%. &
+        FODA correcto $>81$\%. Estrategia Min-Min/Max-Max correcta $>81$\%. &
+        \textbf{2} \\
+        \hline
+        Modelo contextual &
+        Correcto $<40$\%. &
+        Incompleto (41--80\%). &
+        Correcto $>81$\%. Sintaxis adecuada. Todas las entidades y flujos. &
+        \textbf{2} \\
+        \hline
+        Modelo DFD nivel 0 &
+        Correcto $<40$\%. &
+        Correcto 41--80\%. &
+        Correcto $>81$\%. Mínimo 3 procesos. Flujos con nombres. &
+        \textbf{2} \\
+        \hline
+        Requerimientos funcionales &
+        Correctos $<40$\%. &
+        Correctos 41--80\%. &
+        Correctos $>81$\%. Claros, no ambiguos. &
+        \textbf{2} \\
+        \hline
+        Requerimientos no funcionales &
+        Correctos $<40$\%. &
+        Correctos 41--80\%. &
+        Correctos $>81$\%. Rendimiento, seguridad, robustez. &
+        \textbf{2} \\
+        \hline
+        Modelado con casos de uso &
+        Correcto $<40$\%. &
+        Correcto 41--80\%. &
+        Correcto $>81$\%. &
+        \textbf{2} \\
+        \hline
+        Sintaxis de diagramas de CU &
+        $<40$\% correcto. 1 diagrama. &
+        41--80\%. 2 diagramas. &
+        3 diagramas ($>81$\%). Relaciones de asociación, extends, include. Especificación realizada. &
+        \textbf{2} \\
+        \hline
+        Diagramas de secuencia &
+        Ninguno correcto. &
+        1 diagrama correcto. &
+        2+ correctos (ideal 3). Línea de vida, mensajes, autollamados. &
+        \textbf{3} \\
+        \hline
+        Diagramas de actividades &
+        Ninguno correcto. &
+        1 diagrama correcto. &
+        2+ correctos (ideal 3). Bifurcaciones y barras de sincronización. &
+        \textbf{3} \\
+        \hline
+        Diagrama de clases &
+        $<40$\% correcto. &
+        41--60\% correcto. &
+        $>81$\% correcto. Herencia, asociación con cardinalidad, mín.\ 2 agregación/composición. &
+        \textbf{3} \\
+        \hline
+        Diagrama de despliegue &
+        $<40$\% correcto. &
+        41--60\% correcto. &
+        $>81$\% correcto. Nodos, asociación y dependencia de componentes. &
+        \textbf{3} \\
+        \hline
+        Mapa de navegación, wireframe, código fuente &
+        $<40$\% correcto. &
+        41--60\% correcto. &
+        61--80\% correcto. App multiusuario. Wireframe con banner, nav, login, footer. GitHub con BD. &
+        \textbf{3} \\
+        \hline
+        Elaboración de solución informática &
+        $<14$\% correcto. &
+        15--28\% correcto. &
+        $>87$\% correcto. Acorde a estrategia MINMAX. Cumple RF y CU. Funcionalidad $>81$\%. &
+        \textbf{6} \\
+        \hline
+        Redacción del documento &
+        $<40$\% correcto. $>10$ faltas. &
+        41--60\%. 8--10 faltas. &
+        $>81$\%. $\leq 3$ faltas. Lenguaje técnico adecuado. &
+        \textbf{3} \\
+        \hline
+        \rowcolor{upsblue}
+        \multicolumn{4}{|r|}{\textcolor{white}{\textbf{TOTAL}}} &
+        \textcolor{white}{\textbf{40}} \\
+        \hline
+    \end{tabularx}
+    \caption{Criterios de Evaluación y Rúbrica}
+    \label{tab:rubrica}
+\end{table}
+
+\end{document}
