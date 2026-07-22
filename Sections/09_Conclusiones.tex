@@ -1,0 +1,20 @@
+\section{Conclusiones y Recomendaciones}
+\begin{enumerate}
+    \item \textbf{Conclusión 1 (Aplicación práctica - Modelado de Negocio):} \\
+    El modelado del Modelo Contextual y el Diagrama de Flujo de Datos (DFD) de nivel 0 permitieron delimitar de forma precisa los límites de la aplicación ``PetFood-Manager'', logrando mapear y documentar los flujos de datos transaccionales de venta e inventario entre la tienda PetShop Huellitas \& Snacks y sus entidades externas (clientes, proveedores, SRI y pasarela de pago), eliminando la ineficiencia histórica del registro manual.
+    
+    \item \textbf{Conclusión 2 (Aplicación práctica - Gestión Estratégica):} \\
+    La alineación directa de las funcionalidades del software con la estrategia de supervivencia MIN-MIN demostró ser vital para el impacto del negocio. El módulo de alertas y reabastecimiento automático ataca directamente el cuello de botella del control de existencias, disminuyendo costos de almacenamiento y permitiendo que una tienda mediana retenga su clientela y compita frente al retail masivo.
+    
+    \item \textbf{Conclusión 3 (Aplicación práctica - Casos de Uso y Requisitos):} \\
+    El diseño minucioso de la especificación de casos de uso y la separación clara de los requerimientos funcionales y no funcionales estructuraron las bases del desarrollo. Definir los flujos excepcionales, como la desconexión con la pasarela de pagos o fallos del SRI, previno problemas futuros en producción, garantizando que el sistema cuente con políticas transaccionales robustas.
+    
+    \item \textbf{Conclusión 4 (Retos técnicos - Base de Datos Relacional):} \\
+    Modelar el diagrama de clases e implementarlo bajo una base de datos relacional transaccional supuso el principal reto técnico en el diseño estructurado. Relacionar la herencia de los productos alimenticios según el animal destinatario junto a la composición obligatoria de las cabeceras de ventas con sus correspondientes detalles exigió aplicar restricciones de integridad referencial complejas para evitar redundancia e inconsistencias de datos.
+    
+    \item \textbf{Conclusión 5 (Retos técnicos - Arquitectura Distribuida):} \\
+    Definir e integrar la arquitectura física del sistema sobre infraestructura distribuida de Microsoft Azure (máquinas virtuales para el servidor web y Azure SQL para la base de datos) demandó mitigar problemas de latencia de red y seguridad. Se solventó este desafío estableciendo conexiones cifradas SSL/TLS mediante protocolo HTTPS, asegurando la privacidad en el intercambio transaccional de pagos.
+    
+    \item \textbf{Conclusión 6 (Retos técnicos - Sincronización en Tiempo Real):} \\
+    Garantizar la sincronización concurrente del inventario lógico y físico al procesar ventas masivas representó un reto de concurrencia avanzado. Fue necesario diseñar un flujo lógico donde las decrementaciones de stock se realicen de manera transaccional atómica, disparando eventos asíncronos para el envío de notificaciones automáticas al correo del proveedor, aislando los tiempos de espera del cliente final.
+\end{enumerate}

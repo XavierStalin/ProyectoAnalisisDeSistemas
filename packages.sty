@@ -1,0 +1,59 @@
+\ProvidesPackage{packages}
+
+% ==========================================
+% 1. CONFIGURACIÓN DEL DOCUMENTO
+% ==========================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+
+% Márgenes de 2.5 cm
+\usepackage{geometry}
+\geometry{a4paper, left=25mm, right=25mm, top=25mm, bottom=25mm, headheight=24pt}
+
+% ==========================================
+% 2. IDENTIDAD VISUAL Y COLORES
+% ==========================================
+\usepackage[table,dvipsnames]{xcolor}
+\definecolor{upsblue}{HTML}{002F6C}    % Azul Marino Institucional
+\definecolor{upsyellow}{HTML}{FFC72C}  % Amarillo Ocre Institucional
+\definecolor{lightgray}{gray}{0.95}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=upsblue, urlcolor=upsblue, citecolor=upsblue}
+
+% ==========================================
+% 3. ENCABEZADOS Y PIES DE PÁGINA
+% ==========================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{upsblue}{\small\textbf{Universidad Politécnica Salesiana}}}
+\fancyhead[R]{\textcolor{upsblue}{\small Informe de Implementación - Análisis y Diseño de Sistemas}}
+\fancyfoot[R]{\small Página \thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{upsblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% ==========================================
+% PAQUETES ADICIONALES Y AUXILIARES
+% ==========================================
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{enumitem}
+\usepackage{parskip} 
+\usepackage{amssymb}
+\usepackage{float}
+
+% Estilo de columnas para tablas
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+% Comando auxiliar para placeholders de imágenes
+\newcommand{\placeholderfig}[2][5cm]{%
+    \begin{center}
+        \fbox{\parbox[c][#1][c]{0.9\linewidth}{\centering\itshape\textcolor{gray}{#2}}}
+    \end{center}
+}

@@ -1,0 +1,44 @@
+\section{Requerimientos del Sistema}
+
+\subsection{Definición del sistema informático basado en la estrategia de supervivencia MIN-MIN}
+El sistema propuesto, ``PetFood-Manager'', se fundamenta en la estrategia de supervivencia MIN-MIN definida en la sección \ref{sec:estrategia}. Su propósito es reducir el procesamiento manual e ineficiente de pedidos y la desvinculación de inventarios frente a la amenaza de las grandes cadenas comerciales, automatizando el control de existencias en tiempo real y optimizando el reabastecimiento con los proveedores para asegurar la continuidad y competitividad del negocio.
+
+\subsection{Listado de requerimientos funcionales}
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|p{4.5cm}|L|}
+        \hline
+        \rowcolor{upsblue} \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Requerimiento Funcional}} & \textcolor{white}{\textbf{Descripción / Detalle}} \\
+        \hline
+        \textbf{RF-01} & Registro de Catálogo de Alimentos & El sistema permitirá al Administrador registrar nuevos alimentos detallando marca, tipo de mascota (perro/gato), peso neto (kg), stock disponible, stock mínimo y costo unitario. \\
+        \hline
+        \textbf{RF-02} & Carrito de Compras y Pagos & El sistema permitirá a los clientes seleccionar productos del inventario disponible, agregarlos al carro de compras y pagar mediante pasarela de pagos integrada. \\
+        \hline
+        \textbf{RF-03} & Alertas y Órdenes Automáticas & El sistema enviará una alerta visual al Administrador y una orden de compra automática al Proveedor asignado cuando las existencias desciendan de su stock mínimo configurado. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabla de Requerimientos Funcionales}
+    \label{tab:requerimientos_funcionales}
+\end{table}
+
+\subsection{Listado de requerimientos no funcionales}
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|p{4.5cm}|L|}
+        \hline
+        \rowcolor{upsblue} \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Requerimiento No Funcional}} & \textcolor{white}{\textbf{Descripción / Criterio de Medición}} \\
+        \hline
+        \textbf{RNF-01} & Tiempo de Respuesta & El sistema debe recuperar el estado del catálogo y la disponibilidad de stock en menos de 1.5 segundos ante consultas concurrentes de hasta 100 usuarios. \\
+        \hline
+        \textbf{RNF-02} & Seguridad de Información & Toda la información de transacciones y datos de tarjeta de crédito debe viajar encriptada mediante protocolo SSL/TLS con HTTPS activo en el dominio. \\
+        \hline
+        \textbf{RNF-03} & Alta Disponibilidad & Los servicios backend de API y base de datos relacional deben mantener una disponibilidad mínima anual del 99.9\% alojados sobre infraestructura de Azure. \\
+        \hline
+    \end{tabularx}
+    \caption{Tabla de Requerimientos No Funcionales}
+    \label{tab:requerimientos_no_funcionales}
+\end{table}

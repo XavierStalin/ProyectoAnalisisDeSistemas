@@ -1,0 +1,33 @@
+\documentclass[11pt,a4paper]{article}
+
+% 1. Importar configuración y paquetes
+\usepackage{packages}
+
+\begin{document}
+
+% 2. Insertar la portada
+\input{title}
+
+\newpage
+\tableofcontents
+\newpage
+
+% 3. Insertar el contenido por secciones
+% (Debes crear estos archivos dentro de la carpeta Sections/)
+\input{Sections/01_Introduccion}
+\input{Sections/02_DatosGenerales}
+\input{Sections/03_Entorno}
+\input{Sections/04_Requerimientos}
+\input{Sections/05_CasosUso}
+\input{Sections/06_DiagramasInteraccion}
+\input{Sections/07_DiagramasEstructurales}
+\input{Sections/08_Solucion}
+\input{Sections/09_Conclusiones}
+
+\newpage
+% 4. Generar la Bibliografía automáticamente desde bib.bib
+\nocite{*}
+\bibliographystyle{apalike}
+\bibliography{bib}
+
+\end{document}
